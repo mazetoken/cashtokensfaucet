@@ -1,2 +1,1 @@
-# cashtokensfaucet
-Bitcoin Cash CashTokens faucet
+# Bitcoin Cash CashTokens faucet

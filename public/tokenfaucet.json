@@ -1,0 +1,30 @@
+{
+  "contractName": "TokenFaucet",
+  "constructorInputs": [
+    {
+      "name": "index",
+      "type": "int"
+    },
+    {
+      "name": "period",
+      "type": "int"
+    },
+    {
+      "name": "amount",
+      "type": "int"
+    }
+  ],
+  "abi": [
+    {
+      "name": "claimTokens",
+      "inputs": []
+    }
+  ],
+  "bytecode": "OP_0 OP_GREATERTHANOREQUAL OP_VERIFY OP_TXVERSION OP_2 OP_GREATERTHANOREQUAL OP_VERIFY OP_CHECKSEQUENCEVERIFY OP_DROP 8813 OP_NUMEQUAL",
+  "source": "pragma cashscript ^0.9.3;\r\n\r\ncontract TokenFaucet(int index, int period, int amount) {\r\n    function claimTokens() {\r\n        require(index >= 0);\r\n        require(tx.version >= 2);\r\n        require(tx.age >= period);\r\n        require(amount == 5000);\r\n    }\r\n}",
+  "compiler": {
+    "name": "cashc",
+    "version": "0.9.3"
+  },
+  "updatedAt": "2024-05-31T09:50:55.869Z"
+}
