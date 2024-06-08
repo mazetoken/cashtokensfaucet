@@ -10,21 +10,34 @@
       "type": "int"
     },
     {
-      "name": "amount",
+      "name": "contractPassword",
+      "type": "int"
+    },
+    {
+      "name": "tokenAmount",
       "type": "int"
     }
   ],
   "abi": [
     {
       "name": "claimTokens",
-      "inputs": []
+      "inputs": [
+        {
+          "name": "password",
+          "type": "int"
+        },
+        {
+          "name": "amount",
+          "type": "int"
+        }
+      ]
     }
   ],
-  "bytecode": "OP_0 OP_GREATERTHANOREQUAL OP_VERIFY OP_TXVERSION OP_2 OP_GREATERTHANOREQUAL OP_VERIFY OP_CHECKSEQUENCEVERIFY OP_DROP 8813 OP_NUMEQUAL",
-  "source": "pragma cashscript ^0.9.3;\r\n\r\ncontract TokenFaucet(int index, int period, int amount) {\r\n    function claimTokens() {\r\n        require(index >= 0);\r\n        require(tx.version >= 2);\r\n        require(tx.age >= period);\r\n        require(amount == 5000);\r\n    }\r\n}",
+  "bytecode": "OP_0 OP_GREATERTHANOREQUAL OP_VERIFY OP_TXVERSION OP_2 OP_GREATERTHANOREQUAL OP_VERIFY OP_CHECKSEQUENCEVERIFY OP_DROP OP_ROT OP_NUMEQUALVERIFY OP_NUMEQUAL",
+  "source": "pragma cashscript ^0.9.3;\r\n\r\ncontract TokenFaucet(int index, int period, int contractPassword, int tokenAmount) {\r\n    function claimTokens(int password, int amount) {\r\n        require(index >= 0);\r\n        require(tx.version >= 2);\r\n        require(tx.age >= period);\r\n        require(password == contractPassword);\r\n        require(amount == tokenAmount);\r\n    }\r\n}",
   "compiler": {
     "name": "cashc",
     "version": "0.9.3"
   },
-  "updatedAt": "2024-05-31T09:50:55.869Z"
+  "updatedAt": "2024-06-07T18:35:00.049Z"
 }
